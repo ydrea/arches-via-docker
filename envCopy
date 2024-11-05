@@ -1,0 +1,64 @@
+# Edit this file and save as ".env" for use.
+
+COMPOSE_PROJECT_NAME=suhozid
+DOMAINS=suhozid.orbis.hr
+DEPLOY_HOST=suhozid.orbis.hr
+NGINX_HTML_PATH=/var/www/html/$DEPLOY_HOST
+CERT_PATH=/var/www/certbot/$DEPLOY_HOST
+CERTBOT_EMAILS=devsuhozid@devsuhozid.org
+CERTBOT_TEST_CERT=1
+CERTBOT_RSA_KEY_SIZE=4096
+TZ=PST
+
+#arches project and paths
+ARCHES_PROJECT=suhozid
+ARCHES_ROOT=/arches_app
+APP_ROOT=$ARCHES_ROOT/$ARCHES_PROJECT
+APP_COMP_FOLDER=$APP_ROOT/$ARCHES_PROJECT
+
+#Arches configs
+# NOTE: the ARCHES_NAMESPACE needs to look like a URL, ending in a '/',
+# with the same port as used by the Arches Django APP.
+ARCHES_NAMESPACE='http://arches_proj:8000/'
+# This will hopefully make the yarn build not fail.
+NODE_OPTIONS='--max-old-space-size=1024'
+INSTALL_DEFAULT_GRAPHS=True
+INSTALL_DEFAULT_CONCEPTS=True
+# Don't change these, because I can't figure out how dynamically pass
+# a new database password to Postgres via docker compose. If you change
+# something like the PGPASSWORD, be sure to change it in the corresponding
+# value in the docker-compse.yml for the Postgres container.
+PGUSERNAME=suhozid
+PGPASSWORD=4EsXbJg37K7p7sQg
+PGDBNAME=arches
+PGHOST=arches_db
+PGPORT=5433
+ESHOST=arches_elasticsearch
+ESPORT=9200
+DJANGO_MODE=DEV
+DJANGO_DEBUG=False
+# Don't change the port, since it's pretty hard-coded.
+DJANGO_PORT=8000
+DOMAIN_NAMES=$DOMAINS localhost 0.0.0.0 127.0.0.1
+# NOTE: Only set BUILD_PRODUCTION=True if you have well over
+# 8GB of system RAM. Otherwise, yarn will likely error out.
+BUILD_PRODUCTION=False
+PYTHONUNBUFFERED=0
+ELASTICSEARCH_PREFIX=$ARCHES_PROJECT
+
+# RabbitMQ credentials. We're currently using Redis as a task
+# broker, not RabbitMQ, so these are commented out.
+# RABBITMQ_USER=guest
+# RABBITMQ_PASS=guest
+
+# couchdb for arches. Not needed for V7+, but config exists incase it
+# reappears.
+COUCHDB_HOST=arches
+COUCHDB_PORT=5984
+COUCHDB_USER=admin
+COUCHDB_PASS=password
+COUCHDB_URL=http://$COUCHDB_USER:$COUCHDB_PASS@$COUCHDB_HOST:$COUCHDB_PORT
+
+# The DATABASE_URL is a convenience consolidated way help connect to Postgresql
+# pg_featureserv and tileserv
+DATABASE_URL=postgresql://$PGUSERNAME:$PGPASSWORD@$PGHOST/$PGDBNAME
