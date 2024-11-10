@@ -87,8 +87,9 @@ LANGUAGE_CODE = 'en'
 # Added for v7 internationalization demo
 LANGUAGES = [
     ('en', ('English')),
+    ('en', ('USA')),
     # ('ar', ('Arabic')),
     # ('he', ('Hebrew')),
 ]
 # This will be true for this deployment
-SHOW_LANGUAGE_SWITCH = len(LANGUAGES) > 0
+SHOW_LANGUAGE_SWITCH = len(LANGUAGES) > 1
