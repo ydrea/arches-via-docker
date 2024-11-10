@@ -4,9 +4,9 @@ from django.conf.urls.static import static
 # from django.conf.urls.i18n import i18n_patterns
 from django.urls import path, include
 
-urlpatterns = [path('', include('arches.urls'))]
+urlpatterns = []
 
-# urlpatterns.append(path('', include('arches.urls')))
+urlpatterns.append(path('', include('arches.urls')))
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 # Wrap urlpatterns with i18n_patterns only if this is the main URLconf
