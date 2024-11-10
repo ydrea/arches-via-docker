@@ -86,9 +86,9 @@ STATIC_ROOT = "/static_root"
 LANGUAGE_CODE = 'en'
 # Added for v7 internationalization demo
 LANGUAGES = [
-    ('en', ('English')),
-    ('ar', ('Arabic')),
-    ('he', ('Hebrew')),
+    # ('en', ('English')),
+    # ('ar', ('Arabic')),
+    # ('he', ('Hebrew')),
 ]
 # This will be true for this deployment
 SHOW_LANGUAGE_SWITCH = len(LANGUAGES) > 1
